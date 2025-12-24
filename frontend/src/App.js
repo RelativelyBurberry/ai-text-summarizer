@@ -39,13 +39,13 @@ function App() {
       let response;
       if (mode=='text'){
         if (!text.trim()) return alert ("Please enter text to summarize.");
-        response = await axios.post('${API_BASE}/summarize/text', { text });
+        response = await axios.post(`${API_BASE}/summarize/text`, { text });
       }
       else if (mode=='pdf'){
         if (!file) return alert ("Please upload a PDF file to summarize.");
         const formData = new FormData();
         formData.append('file',file);
-        response = await axios.post('${API_BASE}/summarize/pdf',formData,{
+        response = await axios.post(`${API_BASE}/summarize/pdf`,formData,{
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -53,7 +53,7 @@ function App() {
       }
       else if (mode=='youtube'){
         if (!youtubeUrl.trim()) return alert ("Please enter a YouTube video URL to summarize.");
-        response = await axios.post('${API_BASE}/summarize/youtube',{url: youtubeUrl});
+        response = await axios.post(`${API_BASE}/summarize/youtube`,{url: youtubeUrl});
       }
       const elapsed = Date.now() - start;
       if (elapsed < 800) {
