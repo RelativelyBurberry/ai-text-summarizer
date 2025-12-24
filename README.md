@@ -5,6 +5,11 @@ AI Text Summarizer is a full-stack web application that generates concise summar
 It supports **plain text**, **PDF documents**, and **YouTube videos** (via transcripts).
 
 ---
+## 🎥 Video Demo
+📹 **Demo Video:**  
+<video src="https://github.com/user-attachments/assets/8ba6767c-ad79-44fa-ad1a-c7e999687023"> </video>
+
+---
 
 ## 🧩 Abstraction Model
 
@@ -135,9 +140,4 @@ This separation ensures scalability, maintainability, and clarity.
 - Dockerized deployment
 - Better PDF parsing for scanned documents
 
----
-
-## 🎥 Video Demo
-📹 **Demo Video:**  
-<video src="https://github.com/user-attachments/assets/8ba6767c-ad79-44fa-ad1a-c7e999687023"> </video>
 
