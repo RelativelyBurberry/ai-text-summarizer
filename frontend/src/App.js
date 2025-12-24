@@ -1,19 +1,41 @@
 import React,{ useState }  from 'react';
+import { useEffect } from "react";
+
 import axios from 'axios';
+import './App.css';
+
 
 function App() {
   const [text,setText] = useState('');
   const [summary,setSummary] = useState('');
   const [file,setFile] = useState(null);
   const [youtubeUrl,setYoutubeUrl] = useState('');
+  const [toast, setToast] = useState(null);
+  const [dark, setDark] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
+
+  const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
   const [mode,setMode] = useState('text'); 
   const [loading,setLoading] = useState(false);
+
+  useEffect(() => {
+    if (dark) {
+      document.body.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [dark]);
+
 
   const handleSummarize = async () => {
     setLoading(true);
     setSummary(''); 
     try{
+      const start = Date.now();
       let response;
       if (mode=='text'){
         if (!text.trim()) return alert ("Please enter text to summarize.");
@@ -33,17 +55,37 @@ function App() {
         if (!youtubeUrl.trim()) return alert ("Please enter a YouTube video URL to summarize.");
         response = await axios.post('http://localhost:5000/summarize/youtube',{url: youtubeUrl});
       }
+      const elapsed = Date.now() - start;
+      if (elapsed < 800) {
+        await sleep(800 - elapsed);
+      }
       setSummary(response.data.summary);
-    }catch (error){
-      console.error("Error during summarization:",error);
-      alert ("An error occurred during summarization. Please try again.");
-    }
+    }catch (error) {
+      console.error("Error during summarization:", error);
+      let message = "Something went wrong. Please try again.";
+
+      if (error.response?.status === 429) {
+        message = "You’ve hit the usage limit. Try again in a bit.";
+      } else if (error.message.includes("Network")) {
+        message = "Cannot connect to the server. Is the backend running?";
+      }
+
+      setToast(message);
+    } finally {
     setLoading(false);
+    }
   };
   return (
-    <div className="App">
+    <div className={`App ${dark ? 'dark' : ''}`}>
       <h1>AI Summarization App</h1>
+      <p className="subtitle">
+        Paste text, upload PDFs, or summarize YouTube videos in seconds.
+      </p>
       <div className = "mode-buttons">
+        <button className="theme-toggle" onClick={() => setDark(!dark)}>
+          {dark ? '☀️ Light' : '🌙 Dark'}
+        </button>
+
         <button className={mode === "text" ? "active" : ""} onClick={() => setMode("text")}>
           Text
         </button>
@@ -79,13 +121,20 @@ function App() {
       )}
 
       <button onClick={handleSummarize} disabled ={loading}>
-        {loading ? 'Summarizing...' : 'Summarize'}
+        {loading ? <span className="loader"></span> : 'Summarize'}
+
       </button>
 
       {summary && (
         <div className="summary-result">
           <h2>Summary</h2>
           <p>{summary}</p>
+        </div>
+      )}
+
+      {toast && (
+        <div className="toast">
+          {toast}
         </div>
       )}
 
