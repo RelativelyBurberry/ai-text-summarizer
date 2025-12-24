@@ -1,74 +1,143 @@
-# AI Summarizer App
+# 🧠 AI Text Summarizer
 
-An AI-powered web application that generates concise summaries from **plain text**, **YouTube videos**, and **PDF documents** using modern NLP models.
-
-## 🚀 Features
-
-- 📝 **Text Summarization** – Paste any text and get an instant AI-generated summary  
-- 🎥 **YouTube Video Summarization** – Extracts transcript and produces structured summaries  
-- 📄 **PDF Summarization** – Upload PDFs and summarize long documents efficiently  
-- ⚡ Fast, responsive UI built with React  
-- 🔌 Modular REST API backend using Flask  
-- 🤖 Powered by OpenAI API for high-quality summaries  
-
-## 🛠️ Tech Stack
-
-### Frontend
-- React
-- Tailwind CSS
-- Axios
-
-### Backend
-- Flask
-- RESTful APIs
-- OpenAI API
-- YouTube Transcript API
-- PDF parsing utilities
-
-## 🏗️ Architecture Overview <br>
-Frontend (React) <br> 
-↓ REST API <br>
-Backend (Flask) <br>
-↓ <br>
-OpenAI API / YouTube Transcript / PDF Parser <br>
-
-
-The frontend communicates with a Flask backend via REST APIs. The backend handles content extraction, preprocessing, prompt construction, and AI inference.
-
-## 📦 Installation & Setup
-
-### 1. Clone the Repository
-```bash
-git clone https://github.com/your-username/ai-summarizer-app.git
-cd ai-summarizer-app
-```
-### 2. Backend Setup
-cd backend <br> 
-pip install -r requirements.txt <br> 
-python app.py <br> 
-
-### 3. Frontend Setup
-cd frontend <br> 
-npm install <br> 
-npm start <br> 
-
-### 4.🔑 Environment Variables
-Create a .env file in the backend directory: <br> 
-OPENAI_API_KEY=your_api_key_here <br> 
+## 📌 Overview
+AI Text Summarizer is a full-stack web application that generates concise summaries from long-form content.  
+It supports **plain text**, **PDF documents**, and **YouTube videos** (via transcripts).
 
 ---
 
-## 🧠 How It Works
+## 🧩 Abstraction Model
 
-User inputs text / YouTube URL / PDF <br> 
-Backend extracts and preprocesses content <br> 
-Prompt is dynamically generated <br> 
-OpenAI API returns a summarized response <br> 
-Summary is rendered in the UI <br> 
+The application is divided into clear layers:
 
-## 📌 Future Improvements
+### Frontend (Client)
+- User input handling (Text / PDF / YouTube)
+- UI state management (modes, loading, errors)
+- Theme handling (Light / Dark mode)
+- API communication with backend
 
-Multi-language support <br> 
-Summary length & style controls <br> 
-User authentication and history <br> 
-Streaming responses for large documents <br> 
+### Backend (Server)
+- REST API endpoints for summarization
+- Input validation and preprocessing
+- PDF text extraction
+- YouTube transcript handling
+- LLM-based summarization logic
+- Structured error responses
+
+This separation ensures scalability, maintainability, and clarity.
+
+---
+
+## 🛠️ Technologies Used (Tech Stack)
+
+### Frontend
+- HTML, CSS, JavaScript
+- React
+- Axios
+
+### Backend
+- Python
+- Flask
+- REST APIs
+
+### AI / NLP
+- LLM-based summarization backend
+
+### Tooling & Environment
+- Git & GitHub
+- Node.js (npm)
+- VS Code
+- Python Virtual Environments
+
+---
+
+## ✨ Features
+
+### 🔤 Text Summarization
+- Paste long-form text and receive a concise summary
+
+### 📄 PDF Summarization
+- Upload PDF documents
+- Automatic text extraction and summarization
+
+### 📺 YouTube Summarization
+- Accepts YouTube URLs
+- Extracts transcripts (when available)
+- Summarizes video content into readable text
+
+### 🌗 Light / Dark Mode
+- Fully styled dark mode
+- Theme toggle with consistent UI behavior
+
+### ⏳ Loading & Feedback
+- Visible loading indicator
+- Artificial delay for UX clarity
+- Error toasts for failed requests
+
+### 🎨 Modern UI
+- Gradient-based design
+- Clean card layout
+- Responsive and readable typography
+
+---
+
+## 🏗️ How I Built It
+
+1️⃣ **Frontend**
+- Built a clean UI with multiple input modes
+- Added loading states, error handling, and theme support
+
+2️⃣ **Backend API Design**
+- Created separate endpoints for:
+  - Text summarization
+  - PDF summarization
+  - YouTube summarization
+- Ensured consistent request/response formats
+
+3️⃣ **Integration**
+- Connected frontend to backend using Axios
+- Handled edge cases (empty input, invalid files, missing transcripts)
+
+4️⃣ **Iteration & Refinement**
+- Improved UI readability
+- Fixed state and async bugs
+- Refined dark mode and loading behavior
+
+---
+
+## 📚 What I Learned
+
+### 🧠 Full-Stack Thinking
+- How frontend and backend communicate
+- Why clean abstractions matter early
+
+### 🔧 API Design
+- Structuring REST endpoints properly
+- Graceful error handling
+
+### 🎨 UI/UX
+- Importance of loading feedback
+- Dark mode beyond color inversion
+- Readability and spacing over visual noise
+
+### 🧪 Debugging & Iteration
+- Git conflict resolution
+- Async state debugging
+- Knowing when to reset and simplify
+
+---
+
+## 🚀 Upcoming Features
+- Improved YouTube transcript reliability
+- Streaming summaries (partial output while generating)
+- Summary length control
+- User authentication and summary history
+- Dockerized deployment
+- Better PDF parsing for scanned documents
+
+---
+
+## 🎥 Video Demo
+📹 **Demo Video:**  
+<video src="https://github.com/user-attachments/assets/8ba6767c-ad79-44fa-ad1a-c7e999687023"> </video>
+
