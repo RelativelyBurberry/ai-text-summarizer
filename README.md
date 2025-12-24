@@ -2,8 +2,8 @@
 
 ## 📌 Overview
 AI Text Summarizer is a full-stack web application that generates concise summaries from long-form content.  
-It supports **plain text**, **PDF documents**, and **YouTube videos** (via transcripts).
-
+It supports **plain text**, **PDF documents**, and **YouTube videos** (via transcripts). <br>
+Deployment Website <a href = "https://ai-text-pdf-summarizer.vercel.app/" > AI Summarizer Website </a>
 ---
 ## 🎥 Video Demo
 📹 **Demo Video:**  
