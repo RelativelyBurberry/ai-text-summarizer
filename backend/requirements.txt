@@ -3,3 +3,5 @@ groq
 python-dotenv
 gunicorn
 flask-cors
+youtube-transcript-api
+pymupdf
