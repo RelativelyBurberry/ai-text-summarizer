@@ -10,7 +10,7 @@ load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 app = Flask(__name__)
-CORS(app,origins="http://localhost:3000")
+CORS(app)
 
 def get_summary(prompt):
     try:
