@@ -12,6 +12,7 @@ client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 app = Flask(__name__)
 CORS(app)
 
+
 def get_summary(prompt):
     try:
         completion = client.chat.completions.create(
@@ -25,6 +26,11 @@ def get_summary(prompt):
         return completion.choices[0].message.content
     except RateLimitError:
         return "Rate limit exceeded. Please try again later."
+
+@app.route("/", methods=["GET"])
+def home():
+    return {"status": "backend running"}
+
 
 @app.route("/summarize/text", methods=["POST"])
 def summarize_text(): 
